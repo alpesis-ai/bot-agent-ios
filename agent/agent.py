@@ -15,7 +15,7 @@ class Agent(Connector):
     def __init__(self):
         # init connector
         super(Agent, self).__init__()
-        self.screenshot()
+        self.connector_screenshot()
 
         # init figure
         self.figure = plt.figure()
@@ -53,14 +53,14 @@ class Agent(Connector):
             press_time = distance * settings.TIME_COEFF
             print("distance = ", distance)
             print("press_time = ", press_time)
-            self.taphold(press_time)
+            self.connector_taphold(press_time)
             self.status = True
 
 
     def _update_figure(self, *args):
         if self.status:
             time.sleep(1)
-            self.screenshot()
+            self.connector_screenshot()
             self.image.set_array(self._read_image())
             self.status = False
         return self.image,
