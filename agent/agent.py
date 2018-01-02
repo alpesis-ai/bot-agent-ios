@@ -1,29 +1,13 @@
-import os
 import time
 import math
 
-import wda
 import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
 import settings
-
-
-class Connector:
-
-    def __init__(self, image_dir=settings.IMAGE_DIR):
-        self.image_dir = image_dir
-
-        self.client = wda.Client() 
-        self.session = self.client.session()
-
-    def screenshot(self):
-        self.client.screenshot(self.image_dir)
-
-    def taphold(self, value):
-        self.session.tap_hold(200, 200, value)
+from connector import Connector
 
 
 class Agent(Connector):
@@ -32,7 +16,7 @@ class Agent(Connector):
         # init connector
         super(Agent, self).__init__()
         self.screenshot()
-        
+
         # init figure
         self.figure = plt.figure()
         self.image = plt.imshow(self._read_image(), animated=True)
@@ -84,9 +68,3 @@ class Agent(Connector):
 
     def _read_image(self):
         return np.array(Image.open(self.image_dir))
-
-
-if __name__ == '__main__':
-
-    agent = Agent()
-    agent.action('button_press_event', agent.action_onclick)

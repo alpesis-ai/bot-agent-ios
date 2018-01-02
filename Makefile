@@ -1,2 +1,2 @@
 run:
-	python3 agent/agent.py
+	python3 agent/run.py
