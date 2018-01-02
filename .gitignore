@@ -6,3 +6,9 @@
 
 # python
 *.pyc
+
+# data
+data
+
+# osx
+.DS_Store
